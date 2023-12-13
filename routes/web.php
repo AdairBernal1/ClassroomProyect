@@ -28,6 +28,3 @@ Route::post('/cerrar-sesion',[UserController::class,'logout']);
 Route::post('/registrar-usuario',[UserController::class,'register']);
 Route::post('/iniciar-sesion',[UserController::class,'login']);
 Route::post('/cerrar-sesion',[UserController::class,'logout']);
-Route::post('/registerTask',function(){
-    
-});

@@ -4,10 +4,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Classroom</title>
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{asset('css/app.css')}}">
+    <script src="{{ asset('js/app.js')}}"></script>
+    
 </head>
 <body>
-
 
     @auth
 
@@ -18,7 +19,7 @@
     </form>
     
     @else
-
+    @include('menu')
     <div>
         <h2>Registrarse en Classroom</h2>
         <div>
@@ -50,6 +51,5 @@
 
     @endauth
 
-    @include('menu')
 </body>
 </html>
