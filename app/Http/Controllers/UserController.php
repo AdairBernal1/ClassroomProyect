@@ -43,7 +43,7 @@ class UserController extends Controller
             $request -> session() -> regenerate();
         }
 
-        return redirect('/');
+        return redirect('/dashboard');
     }
     public function logout(Request $request){
         auth()->logout();
