@@ -27,7 +27,13 @@ body{
   background-color: #a8dadc;
   color: #0b1216;
 }
-
+.TargetTable{
+  text-align: center;
+  padding: 1%;
+  max-width: 25%;
+  border-radius: 10px;
+  margin-left: 35%;
+}
 input, button, select{
   margin-top: 2%;
 }
@@ -39,15 +45,34 @@ input, select{
   border: none;
 }
 button{
-  width: 90%;
   padding: 12px 20px;
   margin: 8px 0;
   border-radius: 10px; 
-  border: none;
 }
 .success{
+  width: 90%;
   background-color: #1d3557;
   color: #f0f0f0;
+  border: none;
+}
+.createBtn{
+  width: auto;
+  background-color: #f09d3f;
+  color: #f0f0f0;
+  text-align: center;
+  border: none;
+}
+.btnTable{
+  width: 35%;
+  padding: auto;
+  margin-left: auto;
+  border: none;
+}
+.iconbuttonEdit{
+  border-color: yellow;
+}
+.iconbuttonDelete{
+  border-color: red;
 }
 /* Style the links inside the navigation bar */
 .topnav a {
@@ -76,6 +101,19 @@ button{
 .topnav .icon {
   display: none;
 }
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {background-color: #89addf;}
+
 /* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
 @media screen and (max-width: 600px) {
   .topnav a:not(:first-child) {display: none;}
@@ -84,6 +122,10 @@ button{
     display: block;
   }
   .TargetAbc{
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+  .TargetAbc2{
     padding-left: 5%;
     padding-right: 5%;
   }
