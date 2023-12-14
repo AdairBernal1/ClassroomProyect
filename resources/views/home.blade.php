@@ -12,9 +12,12 @@
 <body>
     <div>
         @include('header')
-        <br><br>
-        @include('abcLogin')
-        <br><br>
+        @auth
+        @else
+            <br><br>
+            @include('abcLogin')
+            <br><br>
+        @endauth
     </div>
 </body>
 </html>

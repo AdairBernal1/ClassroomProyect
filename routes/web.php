@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -27,8 +28,14 @@ Route::get('/dashboard', function () {
 });
 
 //TaskController routes
-Route::post('/registerTask',function(){  
+Route::get('/tareas', function () {
+    if (auth() -> check()) {
+        return view('abcTask');
+    }else {
+        return redirect ('/');
+    }
 });
+Route::post('/registrar-task',[TaskController::class,'createTask']);
 
 //UserController routes
 Route::post('/registrar-usuario',[UserController::class,'register']);

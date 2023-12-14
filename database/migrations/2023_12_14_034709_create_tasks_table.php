@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('title');
             $table->string('description');
             $table->integer('autism_lvl');
+            $table->rememberToken();
+            $table->timestamps();
         });
     }
 

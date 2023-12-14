@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Tasks;
+use App\Models\Task;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -18,9 +18,16 @@ class TaskController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function createTask(Request $request)
     {
-        //
+        $incomingField = $request ->validate([
+            "title"=> ["required","string"],
+            "description" => ["required","string"],
+            "autism_lvl"=> ["required",],
+        ]);
+
+        $task = Task::create($incomingField);
+        return 'Task Succesfully created!';
     }
 
     /**
@@ -34,7 +41,7 @@ class TaskController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Tasks $tasks)
+    public function show(Task $tasks)
     {
         //
     }
@@ -42,7 +49,7 @@ class TaskController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Tasks $tasks)
+    public function edit(Task $tasks)
     {
         //
     }
@@ -50,7 +57,7 @@ class TaskController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Tasks $tasks)
+    public function update(Request $request, Task $tasks)
     {
         //
     }
@@ -58,7 +65,7 @@ class TaskController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Tasks $tasks)
+    public function destroy(Task $tasks)
     {
         //
     }

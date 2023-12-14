@@ -18,6 +18,15 @@ body{
   background-color: #a8dadc;
   color: #0b1216;
 }
+.TargetAbc2{
+  text-align: center;
+  padding: 1%;
+  max-width: 25%;
+  border-radius: 10px;
+  margin-left: 35%;
+  background-color: #a8dadc;
+  color: #0b1216;
+}
 
 input, button, select{
   margin-top: 2%;
