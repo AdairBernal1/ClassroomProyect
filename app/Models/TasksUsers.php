@@ -5,12 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Tasks extends Model
+class TasksUsers extends Model
 {
-    use HasFactory;
+    use HasFactory;    
     protected $fillable = [
-        'title',
-        'description',
-        'autism_lvl',
+        'id',
+        'idUser',
+        'idTask',
+        'Status',
     ];
 }
