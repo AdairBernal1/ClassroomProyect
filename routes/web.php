@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Task;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
 
@@ -29,6 +30,15 @@ Route::get('/dashboard', function () {
 
 //TaskController routes
 Route::get('/tareas', function () {
+    if (auth() -> check()) {
+        $all_items = Task::all();
+        return view('listTasks', ['Tasks' => $all_items]);
+    }else {
+        return redirect ('/');
+    }
+});
+
+Route::get('/crear-tarea', function () {
     if (auth() -> check()) {
         return view('abcTask');
     }else {

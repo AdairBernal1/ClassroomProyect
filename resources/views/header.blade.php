@@ -3,9 +3,6 @@
     <div>
       <a href="#home" class="active">Home</a>
       @auth
-      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-        <i class="fa fa-bars"></i>
-      </a>
       <a href="/tareas">Tareas</a>
       <a href="#materiales">Materiales</a>
       <a href="#clases">Clases Asignadas</a>

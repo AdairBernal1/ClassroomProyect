@@ -12,9 +12,9 @@ class TaskController extends Controller
      */
     public function index()
     {
-        //
-    }
 
+    }
+    
     /**
      * Show the form for creating a new resource.
      */
@@ -27,7 +27,7 @@ class TaskController extends Controller
         ]);
 
         $task = Task::create($incomingField);
-        return 'Task Succesfully created!';
+        return redirect("tareas");
     }
 
     /**
