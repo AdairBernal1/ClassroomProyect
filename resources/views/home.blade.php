@@ -10,7 +10,7 @@
     <script src="{{ asset('js/app.js')}}"></script>
 </head>
 <body>
-    @include('menu')
+    @include('header')
     <br><br>
     @include('abcLogin')
 </body>
