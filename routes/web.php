@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,15 +14,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//General routes
 Route::get('/', function () {
     return view('home');
 });
+Route::get('/dashboard', function () {
+    if (auth() -> check()) {
+        return view('dashboard');
+    } else {
+        return redirect ('/');
+    }
+});
+
+//TaskController routes
 Route::post('/registerTask',function(){  
 });
-//UserController routes
-Route::post('/registrar-usuario',[UserController::class,'register']);
-Route::post('/iniciar-sesion',[UserController::class,'login']);
-Route::post('/cerrar-sesion',[UserController::class,'logout']);
 
 //UserController routes
 Route::post('/registrar-usuario',[UserController::class,'register']);
