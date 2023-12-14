@@ -1,15 +1,50 @@
-@import "@fortawesome/fontawesome-free/css/all.css";
+body{
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
+  font-family: sans-serif;
+}
 /* Add a black background color to the top navigation */
 .topnav {
-  background-color: #333;
+  background-color: #1d3557;
   overflow: hidden;
 }
+.TargetAbc{
+  text-align: center;
+  padding: 1%;
+  max-width: 35%;
+  border-radius: 10px;
+  margin-left: 35%;
+  background-color: #a8dadc;
+  color: #0b1216;
+}
 
+input, button, select{
+  margin-top: 2%;
+}
+input, select{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  border-radius: 10px; 
+  border: none;
+}
+button{
+  width: 90%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  border-radius: 10px; 
+  border: none;
+}
+.success{
+  background-color: #1d3557;
+  color: #f0f0f0;
+}
 /* Style the links inside the navigation bar */
 .topnav a {
   float: left;
   display: block;
-  color: #f2f2f2;
+  color: #f0f0f0;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
@@ -18,14 +53,14 @@
 
 /* Change the color of links on hover */
 .topnav a:hover {
-  background-color: #ddd;
+  background-color: #f0f0f0;
   color: black;
 }
 
 /* Add an active class to highlight the current page */
 .topnav a.active {
-  background-color: #04AA6D;
-  color: white;
+  background-color: #e63946;
+  color: f0f0f0;
 }
 
 /* Hide the link that should open and close the topnav on small screens */
@@ -38,6 +73,10 @@
   .topnav a.icon {
     float: right;
     display: block;
+  }
+  .TargetAbc{
+    padding-left: 5%;
+    padding-right: 5%;
   }
 }
 

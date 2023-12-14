@@ -5,7 +5,7 @@
     <a href="#contact">Contact</a>
     <a href="#about">About</a>
     <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-      <i>&#xf0c9;</i>
+      <i class="fa fa-bars"></i>
     </a>
   </div>
 </body>
