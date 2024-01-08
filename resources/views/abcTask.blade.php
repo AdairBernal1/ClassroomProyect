@@ -24,11 +24,22 @@
                     <select name="autism_lvl">
                         <option value="1">Nivel 1</option>
                         <option value="2">Nivel 2</option>
-                    </select><br>
-                <button class="success">Crear</button>
+                    </select><br><br>
+                    <label for="upload" class="custom-file-upload">
+                        Subir imagenes
+                    </label>
+                    <div id="file-name"></div><br>
+                    <input id="upload" type="file" style="display: none;" multiple/>                    
+                <button class="success">Crear</button>           
             </form>
+            <a href=/tareas><button class="return">Volver</button></a>
         </div> 
     </div>  
 </body>
 
-
+<script>
+    document.getElementById('upload').addEventListener('change', function() {
+        var fileName = this.files[0].name;
+        document.getElementById('file-name').textContent = 'Subido: ' + fileName;
+    });
+</script>

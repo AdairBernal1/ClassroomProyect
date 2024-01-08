@@ -44,9 +44,21 @@ input, select{
   border-radius: 10px; 
   border: none;
 }
+.custom-file-upload {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #6a8c6b;
+  color: white;
+  border-radius: 4px;
+  border: none;
+  text-align: center;
+}
+#file-name{
+  margin-top: 2%;
+}
 button{
   padding: 12px 20px;
-  margin: 8px 0;
+  margin: 2px 0;
   border-radius: 10px; 
 }
 .success{
@@ -54,6 +66,12 @@ button{
   background-color: #1d3557;
   color: #f0f0f0;
   border: none;
+}
+.return{
+  width: 90%;
+  background-color: #5d718d;
+  color: #f0f0f0;
+  border: none;  
 }
 .createBtn{
   width: auto;

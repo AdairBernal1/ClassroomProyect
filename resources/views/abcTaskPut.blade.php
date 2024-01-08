@@ -25,7 +25,7 @@
                         <option value="1">Nivel 1</option>
                         <option value="2">Nivel 2</option>
                     </select><br>
-                <button class="success">Crear</button>
+                <button class="success">Modificar</button>
             </form>
         </div> 
     </div>  

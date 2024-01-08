@@ -50,4 +50,4 @@ Route::post('/registrar-task',[TaskController::class,'createTask']);
 //UserController routes
 Route::post('/registrar-usuario',[UserController::class,'register']);
 Route::post('/iniciar-sesion',[UserController::class,'login']);
-Route::post('/cerrar-sesion',[UserController::class,'logout']);
+Route::get('/cerrar-sesion',[UserController::class,'logout']);
