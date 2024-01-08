@@ -19,7 +19,7 @@
           <a href="crear-tarea"><button class="createBtn fa-solid fa-plus"> Crear tareas</button></a>
         </div>
         <br>
-        <div style="overflow-x: auto;">
+        <div style="overflow: auto;">
             <table>
               <tr>
                 <th>Titutlo</th>
