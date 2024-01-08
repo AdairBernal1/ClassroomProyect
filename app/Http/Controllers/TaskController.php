@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Task;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class TaskController extends Controller
 {
@@ -20,14 +21,22 @@ class TaskController extends Controller
      */
     public function createTask(Request $request)
     {
-        $incomingField = $request ->validate([
-            "title"=> ["required","string"],
-            "description" => ["required","string"],
-            "autism_lvl"=> ["required",],
+        $incomingField = $request->validate([
+            "title" => ["required", "string"],
+            "description" => ["required", "string"],
+            "autism_lvl" => ["required"],
+            "pathImg" => ["required", "image"],
         ]);
-
-        $task = Task::create($incomingField);
-        return redirect("tareas");
+    
+        if ($file = $request->file('pathImg')) {
+            $filename = $file->getClientOriginalName();
+            $file->move(public_path('public/src/images'), $filename);
+            $incomingField['pathImg'] = $filename;
+        }
+    
+        Task::create($incomingField);
+    
+        return redirect('/tareas');
     }
 
     /**

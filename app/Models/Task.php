@@ -12,5 +12,6 @@ class Task extends Model
         'title',
         'description',
         'autism_lvl',
+        'pathImg'
     ];
 }

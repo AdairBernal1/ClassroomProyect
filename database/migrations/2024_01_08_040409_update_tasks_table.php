@@ -11,15 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tasks', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->string('description');
-            $table->integer('autism_lvl');
+        Schema::table('tasks', function (Blueprint $table) {
             $table->string('pathImg');
-            $table->rememberToken();
-            $table->timestamps();
-        });
+        });        //
     }
 
     /**
@@ -27,6 +21,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tasks');
+        //
     }
 };
