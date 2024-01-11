@@ -13,7 +13,8 @@
 <body>
     @include('header')
     <br>
-    <div class="TargetTable">
+    @if (Auth::user()->user_type == 'Admin')
+      <div class="TargetTable">
         <h2>Listado de Tareas</h2>
         <div class="btnTable">
           <a href="crear-tarea"><button class="createBtn fa-solid fa-plus"> Crear tareas</button></a>
@@ -23,7 +24,7 @@
           <div style="overflow: auto;">
             <table>
               <tr>
-                <th>Titutlo</th>
+                <th>Titulo</th>
                 <th>Descripcion</th>
                 <th>Nivel de dificultad</th>
                 <th>Imagen</th>
@@ -47,14 +48,22 @@
         @else
             <h5>Lista de tareas vacia.</h5>
         @endif
-  </div>
-  <div id="modal01" class="w3-modal" onclick="this.style.display='none'" style="text-align: center">
-    <img class="w3-modal-content" id="img01" style="width:20%;border-radius: 10px">
-  </div>  
+      </div>
+      <div id="modal01" class="w3-modal" onclick="this.style.display='none'" style="text-align: center">
+        <img class="w3-modal-content" id="img01" style="width:20%;border-radius: 10px">
+      </div>   
+      <script>
+        function onClick(element) {
+          document.getElementById("img01").src = element.src;
+          document.getElementById("modal01").style.display = "block";
+        }
+      </script>     
+    @else
+        <script type="text/javascript">
+            function redirect() {
+                window.location = "tareasUsers";
+            }
+            window.onload = redirect;
+        </script>    
+    @endif
 </body>
-<script>
-  function onClick(element) {
-    document.getElementById("img01").src = element.src;
-    document.getElementById("modal01").style.display = "block";
-  }
-</script>

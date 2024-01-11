@@ -11,8 +11,20 @@
 </head>
 <body>
     @include('header')
-    
-    
+    @if (Auth::user()->user_type == 'Admin')
+        <script type="text/javascript">
+            function redirect() {
+                window.location = "tareas";
+            }
+            window.onload = redirect;
+        </script>        
+    @else
+        <script type="text/javascript">
+            function redirect() {
+                window.location = "";
+            }
+            window.onload = redirect;
+        </script>    
+    @endif
 </body>
 </html>
-

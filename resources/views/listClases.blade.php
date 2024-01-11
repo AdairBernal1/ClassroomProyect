@@ -13,7 +13,8 @@
 <body>
     @include('header')
     <br>
-    <div class="TargetTable">
+    @if (Auth::user()->user_type == 'Admin')
+      <div class="TargetTable">
         <h2>Listado de Clases</h2>
         <div class="btnTable">
           <a href="{{ route('clase.create') }}"><button class="createBtn fa-solid fa-plus"> Crear clase</button></a>
@@ -49,5 +50,13 @@
         @else
             <h5>No hay clases registradas.</h5>
         @endif
-    </div>  
+      </div>         
+    @else
+      <script type="text/javascript">
+          function redirect() {
+              window.location = "tareasUsers";
+          }
+          window.onload = redirect;
+      </script>    
+    @endif
 </body>

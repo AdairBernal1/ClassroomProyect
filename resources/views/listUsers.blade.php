@@ -12,7 +12,8 @@
 <body>
     @include('header')
     <br>
-    <div class="TargetTable">
+    @if (Auth::user()->user_type == 'Admin')
+      <div class="TargetTable">
         <h2>Listado de Usuarios</h2>
         <div class="btnTable">
           <a href="{{ route('user.create') }}"><button class="createBtn fa-solid fa-plus"> Crear usuario</button></a>
@@ -54,5 +55,13 @@
         @else
           <h5>Lista de usuarios vacia</h5>   
         @endif
-    </div>  
+      </div>        
+    @else
+        <script type="text/javascript">
+            function redirect() {
+                window.location = "tareasUsers";
+            }
+            window.onload = redirect;
+        </script>    
+    @endif
 </body>

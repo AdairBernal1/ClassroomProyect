@@ -13,18 +13,27 @@
 <body>
     @include('header')
     <br>
-    <div class="TargetAbc2">
-        <div class="btnBack">
-            <a href="{{ url()->previous() }}" class="go-back-btn">←</a>
-        </div>
-        <h2>Crear Clase</h2>
-        <div>
-            <form action="{{ route('clase.store') }}" method="POST">
-                @csrf
-                <input type="text" name="nombre" placeholder="Nombre"><br>
-                <input type="text" name="descripcion" placeholder="Descripcion"><br>
-                <button class="success">Crear</button>
-            </form>
-        </div> 
-    </div>  
+    @if (Auth::user()->user_type == 'Admin')
+        <div class="TargetAbc2">
+            <div class="btnBack">
+                <a href="{{ url()->previous() }}" class="go-back-btn">←</a>
+            </div>
+            <h2>Crear Clase</h2>
+            <div>
+                <form action="{{ route('clase.store') }}" method="POST">
+                    @csrf
+                    <input type="text" name="nombre" placeholder="Nombre"><br>
+                    <input type="text" name="descripcion" placeholder="Descripcion"><br>
+                    <button class="success">Crear</button>
+                </form>
+            </div> 
+        </div>        
+    @else
+        <script type="text/javascript">
+            function redirect() {
+                window.location = "";
+            }
+            window.onload = redirect;
+        </script>    
+    @endif 
 </body>

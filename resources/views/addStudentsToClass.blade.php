@@ -12,35 +12,44 @@
 <body>
     @include('header')
     <br>
-    <div class="TargetTable">
-        <h2>Agregar Alumnos a la Clase</h2>
-        <form action="{{ route('clase.storeStudents', $clase->id) }}" method="POST">
-            @csrf
-            @if (count($students)>0)
-                <div style="overflow: auto;">
-                    <table>
-                        <tr>
-                            <th>Usuario</th>
-                            <th>Nivel de Autismo</th>
-                            <th>Agregar</th>
-                        </tr>
-                        @foreach($students as $student)
+    @if (Auth::user()->user_type == 'Admin')
+        <div class="TargetTable">
+            <h2>Agregar Alumnos a la Clase</h2>
+            <form action="{{ route('clase.storeStudents', $clase->id) }}" method="POST">
+                @csrf
+                @if (count($students)>0)
+                    <div style="overflow: auto;">
+                        <table>
                             <tr>
-                                <td>{{ $student->username }}</td>
-                                <td>{{ $student->autism_lvl }}</td>
-                                <td><input type="checkbox" name="students[]" value="{{ $student->id }}"></td>
+                                <th>Usuario</th>
+                                <th>Nivel de Autismo</th>
+                                <th>Agregar</th>
                             </tr>
-                        @endforeach
-                    </table>
-                </div>
-            @else
-                <h5>No hay usuarios para agregar.</h5>
-            @endif
-            <button type="submit" class="success">Agregar Seleccionados</button>
-            <button><div class="btnBack">
-                <a href="{{ route('clase.index') }}" class="go-back-btn">←</a>
-            </div></button>
-        </form>
-    </div>
+                            @foreach($students as $student)
+                                <tr>
+                                    <td>{{ $student->username }}</td>
+                                    <td>{{ $student->autism_lvl }}</td>
+                                    <td><input type="checkbox" name="students[]" value="{{ $student->id }}"></td>
+                                </tr>
+                            @endforeach
+                        </table>
+                    </div>
+                @else
+                    <h5>No hay usuarios para agregar.</h5>
+                @endif
+                <button type="submit" class="success">Agregar Seleccionados</button>
+                <button><div class="btnBack">
+                    <a href="{{ route('clase.index') }}" class="go-back-btn">←</a>
+                </div></button>
+            </form>
+        </div>       
+    @else
+        <script type="text/javascript">
+            function redirect() {
+                window.location = "";
+            }
+            window.onload = redirect;
+        </script>    
+    @endif
 </body>
 </html>

@@ -12,25 +12,35 @@
 <body>
     @include('header')
     <br>
-    <div class="TargetAbc2">
-        <div class="btnBack">
-            <a href="{{ url()->previous() }}" class="go-back-btn">←</a>
-        </div>
-        <h2>Crear Usuario</h2>
-        <div>
-            <form action="{{ route('user.store') }}" method="POST">
-                @csrf
-                <input type="text" name="username" placeholder="Username"><br>
-                <input type="email" name="email" placeholder="Email"><br>
-                <input type="password" name="password" placeholder="Password"><br>
-                <select name="user_type">
-                    <option value="Administrador">Administrador</option>
-                    <option value="Usuario">Usuario</option>
-                </select>
-                <br>
-                <input type="number" name="autism_lvl" placeholder="Autism Level"><br>
-                <button class="success">Crear</button>
-            </form>
-        </div> 
-    </div>  
+    @if (Auth::user()->user_type == 'Admin')
+        <div class="TargetAbc2">
+            <div class="btnBack">
+                <a href="{{ url()->previous() }}" class="go-back-btn">←</a>
+            </div>
+            <h2>Crear Usuario</h2>
+            <div>
+                <form action="{{ route('user.store') }}" method="POST">
+                    @csrf
+                    <input type="text" name="username" placeholder="Username"><br>
+                    <input type="email" name="email" placeholder="Email"><br>
+                    <input type="password" name="password" placeholder="Password"><br>
+                    <select name="user_type">
+                        <option value="Administrador">Administrador</option>
+                        <option value="Usuario">Usuario</option>
+                    </select>
+                    <br>
+                    <input type="number" name="autism_lvl" placeholder="Autism Level"><br>
+                    <button class="success">Crear</button>
+                </form>
+            </div> 
+        </div>  
+    @else
+        <script type="text/javascript">
+            function redirect() {
+                window.location = "";
+            }
+            window.onload = redirect;
+        </script>    
+    @endif
+ 
 </body>
