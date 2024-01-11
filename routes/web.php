@@ -1,9 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Models\Task;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ClaseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,3 +54,6 @@ Route::get('/eliminar-task/{id}',[TaskController::class,'deleteTask']);
 Route::post('/registrar-usuario',[UserController::class,'register']);
 Route::post('/iniciar-sesion',[UserController::class,'login']);
 Route::get('/cerrar-sesion',[UserController::class,'logout']);
+
+//ClaseController routes
+Route::resource('clase', ClaseController::class);
