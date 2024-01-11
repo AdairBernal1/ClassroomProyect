@@ -13,6 +13,7 @@
     <div>
         @include('header')
         @auth
+        
         @else
             <br><br>
             @include('abcLogin')

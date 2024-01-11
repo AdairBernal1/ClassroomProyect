@@ -170,3 +170,24 @@ tr:nth-child(even) {background-color: #89addf;}
     text-align: left;
   }
 }
+
+.go-back-btn {
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  padding: 0.5em;
+  background-color: #1d3557;
+  color: #f0f0f0;
+  border: none;
+  border-radius: 2em;
+  text-decoration: none;
+  font-size: 2.5em;
+}
+
+@media screen and (max-width: 600px) {
+  .go-back-btn {
+      padding: 1em;
+      font-size: 1.5em;
+  }
+
+}

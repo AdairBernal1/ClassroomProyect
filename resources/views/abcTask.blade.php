@@ -11,6 +11,7 @@
 
 <body>
     @include('header')
+    <a href="{{ url()->previous() }}" class="go-back-btn">←</a>
     <br>
     <div class="TargetAbc2">
         <h2>Registrar Tarea</h2>

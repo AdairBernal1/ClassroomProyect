@@ -12,42 +12,38 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::all();
+
+        return view('listUsers', compact('users'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        return view('abcUserPut');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function register(Request $request)
+    public function store(Request $request)
     {
-        $incomingField = $request ->validate([
-            "email"=> ["required","email"],
-            "username" => ["required","string"],
-            "password"=> ["required","min:8", 'max:200'],
-            'user_type' => ['required'],
+        $request->validate([
+            'username' => 'required|string',
+            'email' => 'required|email',
+            'password' => 'required|min:8|max:200',
+            'user_type' => 'required',
+            'autism_lvl' => 'required',
         ]);
 
-        $incomingField['password'] = bcrypt($incomingField['password']);
+        $request['password'] = bcrypt($request['password']);
 
-        $user = User::create($incomingField);
-        return 'User Succesfully created!';
-    }
+        $user = User::create($request->all());
 
-    public function login(Request $request){
-        $incomingField = $request ->validate([
-            'logusername'=> ['required','string'],
-            'logpassword'=> ['required'],
-        ]);
-        
-        if (auth()->attempt(['username' => $incomingField['logusername'], 'password'=> $incomingField['logpassword']])) {
-            $request -> session() -> regenerate();
-        }
-
-        return redirect('/dashboard');
-    }
-    public function logout(Request $request){
-        auth()->logout();
-        return redirect('/');
+        return redirect()->route('user.index')
+                         ->with('success','User created successfully.');
     }
 
     /**
@@ -63,7 +59,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('editUser', compact('user'));
     }
 
     /**
@@ -71,14 +67,53 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
-    }
+        $request->validate([
+            'username' => 'required|string',
+            'email' => 'required|email',
+            'password' => 'nullable|min:8|max:200', //password change optional
+            'user_type' => 'required',
+            'autism_lvl' => 'required',
+        ]);
+    
+        $updateData = $request->except(['password']);
+    
+        if ($request->filled('password')) {
+            $updateData['password'] = bcrypt($request['password']);
+        }
+    
+        $user->update($updateData);
+    
+        return redirect()->route('user.index')->with('success', 'User updated successfully');
+    }    
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(User $user)
     {
-        //
+        $user->delete();
+
+        return redirect()->route('user.index')->with('success', 'User deleted successfully');
+    }
+    public function login(Request $request){
+        $incomingField = $request ->validate([
+            'logusername'=> ['required','string'],
+            'logpassword'=> ['required'],
+        ]);
+        
+        if (!auth()->attempt(['username' => $incomingField['logusername'], 'password'=> $incomingField['logpassword']])) {
+            return back()->withErrors([
+                'logusername' => 'The provided credentials do not match our records.',
+            ]);
+        }
+    
+        $request -> session() -> regenerate();
+        return redirect('/dashboard');
+    }
+    
+    
+    public function logout(Request $request){
+        auth()->logout();
+        return redirect('/');
     }
 }
