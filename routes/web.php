@@ -42,18 +42,21 @@ Route::get('/tareas', function () {
 });
 
 Route::get('/crear-tarea', function () {
-    if (auth() -> check()) {
-        return view('abcTask');
-    }else {
-        return redirect ('/');
+    if (auth()->check()) {
+        $clases = \App\Models\Clase::all();
+        return view('abcTask', ['clases' => $clases]);
+    } else {
+        return redirect('/');
     }
 });
 
+
 Route::get('/modificar-task/{id}', function ($id){
-    if (auth() -> check()) {
+    if (auth()->check()) {
         $task = Task::find($id);
-        return view('abcTaskPut', ['Task'=> $task]);
-    }else{
+        $clases = $task->clases;
+        return view('abcTaskPut', ['Task'=> $task, 'clases' => $clases]);
+    } else {
         return redirect ('/');
     }
 });

@@ -23,18 +23,23 @@
                 <input type="text" name="title" placeholder="Titulo"><br>
                 <input type="text" name="description" placeholder="Descripcion"><br>
                 <label for="autism_lvl">Nivel de autismo:</label><br>
-                    <select name="autism_lvl">
-                        <option value="1">Nivel 1</option>
-                        <option value="2">Nivel 2</option>
-                    </select><br><br>
-                    <label for="pathImg" class="custom-file-upload">
-                        Subir imagenes
-                    </label>
-                    <br><br>
-                    <div id="pathImg2"></div>
-                    <input id="pathImg" name="pathImg" type="file" style="display: none;" multiple/>                    
-                <button class="success">Crear</button>           
-            </form>
+                <select name="autism_lvl">
+                    <option value="1">Nivel 1</option>
+                    <option value="2">Nivel 2</option>
+                </select><br><br>
+                <label>Clases:</label><br>
+                @foreach($clases as $clase)
+                    <input type="checkbox" name="clases[]" value="{{ $clase->id }}"> {{ $clase->nombre }}<br>
+                @endforeach
+                <br>
+                <label for="pathImg" class="custom-file-upload">
+                    Subir imagenes
+                </label>
+                <br><br>
+                <div id="pathImg2"></div>
+                <input id="pathImg" name="pathImg" type="file" style="display: none;" multiple/>
+                <button class="success">Crear</button>
+            </form>            
         </div> 
     </div>  
 </body>
