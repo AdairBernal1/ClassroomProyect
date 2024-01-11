@@ -32,14 +32,27 @@ Route::get('/dashboard', function () {
 });
 
 //TaskController routes
+//TaskController routes
 Route::get('/tareas', function () {
-    if (auth() -> check()) {
-        $all_items = Task::all();
-        return view('listTasks', ['Tasks' => $all_items]);
-    }else {
-        return redirect ('/');
+    if (auth()->check()) {
+        if (auth()->user()->user_type == 'Admin') {
+            $tasks = Task::all(); // Obtén todas las tareas para el administrador
+        } else {
+            // Obtén las clases del usuario actual
+            $clases = auth()->user()->clases;
+
+            // Obtén las tareas que pertenecen a cualquiera de las clases del usuario
+            $tasks = Task::whereHas('clases', function ($query) use ($clases) {
+                $query->whereIn('clases.id', $clases->pluck('id')->toArray());
+            })->get();
+        }
+
+        return view('listTasks', ['Tasks' => $tasks]);
+    } else {
+        return redirect('/');
     }
 });
+
 
 Route::get('/crear-tarea', function () {
     if (auth()->check()) {

@@ -18,7 +18,7 @@
           <a href="{{ route('user.create') }}"><button class="createBtn fa-solid fa-plus"> Crear usuario</button></a>
         </div>
         <br>
-        @if (count($users)>0)
+        @if (count($users)>0 && (Auth::user()->user_type == 'Admin'))
           <div style="overflow: auto;">
             <table>
               <tr>

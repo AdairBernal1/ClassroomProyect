@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Task;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class TaskController extends Controller
@@ -13,6 +14,13 @@ class TaskController extends Controller
      */
     public function index()
     {
+        // Obtén las clases del usuario actual
+        $clases = Auth::user()->clases;
+
+        // Obtén las tareas que pertenecen a cualquiera de las clases del usuario
+        $tareas = Task::whereHas('clases', function ($query) use ($clases) {
+            $query->whereIn('clases.id', $clases->pluck('id')->toArray());
+        })->get();
 
     }
     

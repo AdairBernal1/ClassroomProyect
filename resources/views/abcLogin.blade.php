@@ -9,7 +9,7 @@
         <label for="user_type">Tipo de Usuario:</label><br>
             <select name="user_type">
                 <option value="Admin">Administrador</option>
-                <option value="User">Usuario</option>
+                <option value="Usuario">Usuario</option>
             </select><br>
         <button class="success">Registrarse</button>
     </form>

@@ -19,8 +19,7 @@ class Task extends Model
     public function users(): BelongsToMany{
         return $this->belongsToMany(User::class, 'user_task', 'id_user','id_task');
     }
-    public function clases()
-    {
+    public function clases(): BelongsToMany{
         return $this->belongsToMany(Clase::class, 'task_clase', 'id_task','id_clase');
     }
 }

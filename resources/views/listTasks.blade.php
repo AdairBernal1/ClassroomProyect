@@ -1,4 +1,5 @@
-<html lang="en">
+<!DOCTYPE html>
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,43 +15,81 @@
     @include('header')
     <br>
     <div class="TargetTable">
+        @auth
         <h2>Listado de Tareas</h2>
-        <div class="btnTable">
-          <a href="crear-tarea"><button class="createBtn fa-solid fa-plus"> Crear tareas</button></a>
-        </div>
-        <br>
-        @if (count($Tasks)>0)
-          <div style="overflow: auto;">
-            <table>
-              <tr>
-                <th>Titulo</th>
-                <th>Descripcion</th>
-                <th>Nivel de dificultad</th>
-                <th>Imagen</th>
-                <th>Modificar</th>
-                <th>Eliminar</th>
-              </tr>
-              @foreach ($Tasks as $task)
-                <tr>
-                  <td>{{$task['title']}}</td>
-                  <td>{{$task['description']}}</td>
-                  <td>{{$task['autism_lvl']}}</td>
-                  <td>
-                    <img class="responsive-image" src="{{ asset('public/src/images/' . $task['pathImg']) }}" onclick="onClick(this)">
-                  </td>
-                  <td><a href="/modificar-task/{{$task['id']}}"><button class="fa fa-pencil-square iconbuttonEdit"></button></a></td>
-                  <td><a href="/eliminar-task/{{$task['id']}}"><button class="fa fa-trash iconbutton iconbuttonDelete"></button></a></td>                  
-                </tr>                  
-              @endforeach                  
-            </table>
-        </div>            
+        @if (Auth::user()->user_type == 'Admin')
+            <div class="btnTable">
+              <a href="crear-task"><button class="createBtn fa-solid fa-plus"> Crear tareas</button></a>
+            </div>
+            <br>
+            @if (count($Tasks)>0)
+                <div style="overflow: auto;">
+                    <table>
+                      <tr>
+                        <th>Titulo</th>
+                        <th>Descripcion</th>
+                        <th>Nivel de dificultad</th>
+                        <th>Imagen</th>
+                        <th>Modificar</th>
+                        <th>Eliminar</th>
+                        <th>Clase</th>
+                      </tr>
+                      @foreach ($Tasks as $task)
+                        <tr>
+                          <td>{{$task['title']}}</td>
+                          <td>{{$task['description']}}</td>
+                          <td>{{$task['autism_lvl']}}</td>
+                          <td>
+                            <img class="responsive-image" src="{{ asset('public/src/images/' . $task['pathImg']) }}" onclick="onClick(this)">
+                          </td>
+                          <td><a href="/modificar-task/{{$task['id']}}"><button class="fa fa-pencil-square iconbuttonEdit"></button></a></td>
+                          <td><a href="/eliminar-task/{{$task['id']}}"><button class="fa fa-trash iconbutton iconbuttonDelete"></button></a></td>
+                          <td>
+                            @foreach ($task->clases as $clase)
+                              {{$clase->nombre}}
+                            @endforeach
+                          </td>
+                        </tr>                  
+                      @endforeach                  
+                    </table>
+                </div>
+            @else
+                <h5>Lista de tareas vacia.</h5>
+            @endif
         @else
-            <h5>Lista de tareas vacia.</h5>
+            @if (count($Tasks)>0)
+                <div style="overflow: auto;">
+                    <table>
+                      <tr>
+                        <th>Titulo</th>
+                        <th>Descripcion</th>
+                        <th>Nivel de dificultad</th>
+                        <th>Imagen</th>
+                        <th>Clase</th>
+                      </tr>
+                      @foreach ($Tasks as $task)
+                        <tr>
+                          <td>{{$task['title']}}</td>
+                          <td>{{$task['description']}}</td>
+                          <td>{{$task['autism_lvl']}}</td>
+                          <td>
+                            <img class="responsive-image" src="{{ asset('public/src/images/' . $task['pathImg']) }}" onclick="onClick(this)">
+                          </td>
+                          <td>
+                            @foreach ($task->clases as $clase)
+                              {{$clase->nombre}}
+                            @endforeach
+                          </td>
+                        </tr>                  
+                      @endforeach                  
+                    </table>
+                </div>
+            @else
+                <h5>No tienes tareas asignadas.</h5>
+            @endif
         @endif
-  </div>
-  <div id="modal01" class="w3-modal" onclick="this.style.display='none'" style="text-align: center">
-    <img class="w3-modal-content" id="img01" style="width:20%;border-radius: 10px">
-  </div>  
+        @endauth
+    </div>  
 </body>
 <script>
   function onClick(element) {
@@ -58,3 +97,4 @@
     document.getElementById("modal01").style.display = "block";
   }
 </script>
+</html>
