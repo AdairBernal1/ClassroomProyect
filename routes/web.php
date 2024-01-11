@@ -61,10 +61,9 @@ Route::post('/registrar-task',[TaskController::class,'createTask']);
 Route::post('/modificar-task',[TaskController::class,'modificarTask']);
 Route::get('/eliminar-task/{id}',[TaskController::class,'deleteTask']);
 
-
 //UserController routes
 Route::resource('user', UserController::class);
-Route::post('/user/storeStudents', [UserController::class, 'storeAdmin'])->name('user.storeAdmin');
+Route::post('/user/storeAdmin', [UserController::class, 'storeAdmin'])->name('user.storeAdmin');
 Route::post('/iniciar-sesion',[UserController::class,'login']);
 Route::get('/cerrar-sesion',[UserController::class,'logout']);
 
