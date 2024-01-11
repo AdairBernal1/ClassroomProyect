@@ -12,44 +12,41 @@
 <body>
     @include('header')
     <br>
-    @if (Auth::user()->user_type == 'Admin')
-        <div class="TargetAbc2">
-            <div class="btnBack">
-                <a href="{{ url()->previous() }}" class="go-back-btn">←</a>
-            </div>
-            <h2>Registrar Tarea</h2>
-            <div>
-                <form action="/registrar-task" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <input type="text" name="title" placeholder="Titulo"><br>
-                    <input type="text" name="description" placeholder="Descripcion"><br>
-                    <label for="autism_lvl">Nivel de autismo:</label><br>
-                        <select name="autism_lvl">
-                            <option value="1">Nivel 1</option>
-                            <option value="2">Nivel 2</option>
-                        </select><br><br>
-                        <label for="pathImg" class="custom-file-upload">
-                            Subir imagenes
-                        </label>
-                        <br><br>
-                        <div id="pathImg2"></div>
-                        <input id="pathImg" name="pathImg" type="file" style="display: none;" multiple/>                    
-                    <button class="success">Crear</button>           
-                </form>
-            </div> 
+    <div class="TargetAbc2">
+        <div class="btnBack">
+            <a href="{{ url()->previous() }}" class="go-back-btn">←</a>
+        </div>
+        <h2>Registrar Tarea</h2>
+        <div>
+            <form action="/registrar-task" method="POST" enctype="multipart/form-data">
+                @csrf
+                <input type="text" name="title" placeholder="Titulo"><br>
+                <input type="text" name="description" placeholder="Descripcion"><br>
+                <label for="autism_lvl">Nivel de autismo:</label><br>
+                <select name="autism_lvl">
+                    <option value="1">Nivel 1</option>
+                    <option value="2">Nivel 2</option>
+                </select><br><br>
+                <label>Clases:</label><br>
+                @foreach($clases as $clase)
+                    <input type="checkbox" name="clases[]" value="{{ $clase->id }}"> {{ $clase->nombre }}<br>
+                @endforeach
+                <br>
+                <label for="pathImg" class="custom-file-upload">
+                    Subir imagenes
+                </label>
+                <br><br>
+                <div id="pathImg2"></div>
+                <input id="pathImg" name="pathImg" type="file" style="display: none;" multiple/>
+                <button class="success">Crear</button>
+            </form>            
         </div> 
-        <script>
-            document.getElementById('pathImg').addEventListener('change', function() {
-                var fileName = this.files[0].name;
-                document.getElementById('pathImg2').textContent = 'Subido: ' + fileName;
-            });
-        </script>
-    @else
-        <script type="text/javascript">
-            function redirect() {
-                window.location = "";
-            }
-            window.onload = redirect;
-        </script>    
-    @endif 
+    </div>  
 </body>
+
+<script>
+    document.getElementById('pathImg').addEventListener('change', function() {
+        var fileName = this.files[0].name;
+        document.getElementById('pathImg2').textContent = 'Subido: ' + fileName;
+    });
+</script>
