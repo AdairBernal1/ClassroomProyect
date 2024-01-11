@@ -13,6 +13,9 @@
     @include('header')
     <br>
     <div class="TargetAbc2">
+        <div class="btnBack">
+            <a href="{{ url()->previous() }}" class="go-back-btn">←</a>
+        </div>
         <h2>Modificar Tarea</h2>
         <div>
             <form action="/modificar-task" method="POST" enctype="multipart/form-data">
@@ -26,6 +29,7 @@
                     <option value="2" {{ $Task['autism_lvl'] == 2 ? 'selected' : '' }}>Nivel 2</option>
                 </select>
                 <br><br>
+                <img class="responsive-image" src="{{ asset('public/src/images/' . $Task['pathImg']) }}"><br><br><br>
                 <label for="pathImg" class="custom-file-upload">
                     Subir imagenes
                 </label>
@@ -34,9 +38,8 @@
                 <input id="pathImg" name="pathImg" type="file" style="display: none;" multiple/>       
                 <button class="success">Modificar</button>
             </form>
-            <a href=/tareas><button class="return">Volver</button></a>
         </div> 
-    </div>  
+    </div>
 </body>
 <script>
     document.getElementById('pathImg').addEventListener('change', function() {

@@ -11,9 +11,11 @@
 </head>
 <body>
     @include('header')
-    <a href="{{ url()->previous() }}" class="go-back-btn">←</a>
     <br>
     <div class="TargetAbc2">
+        <div class="btnBack">
+            <a href="{{ url()->previous() }}" class="go-back-btn">←</a>
+        </div>
         <h2>Editar Usuario</h2>
         <div>
             <form action="{{ route('user.update', $user->id) }}" method="POST">

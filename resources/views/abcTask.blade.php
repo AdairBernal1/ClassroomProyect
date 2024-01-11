@@ -11,9 +11,11 @@
 
 <body>
     @include('header')
-    <a href="{{ url()->previous() }}" class="go-back-btn">←</a>
     <br>
     <div class="TargetAbc2">
+        <div class="btnBack">
+            <a href="{{ url()->previous() }}" class="go-back-btn">←</a>
+        </div>
         <h2>Registrar Tarea</h2>
         <div>
             <form action="/registrar-task" method="POST" enctype="multipart/form-data">
@@ -33,7 +35,6 @@
                     <input id="pathImg" name="pathImg" type="file" style="display: none;" multiple/>                    
                 <button class="success">Crear</button>           
             </form>
-            <a href=/tareas><button class="return">Volver</button></a>
         </div> 
     </div>  
 </body>

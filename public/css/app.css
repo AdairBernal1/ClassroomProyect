@@ -139,6 +139,8 @@ th, td {
 
 tr:nth-child(even) {background-color: #89addf;}
 
+
+
 /* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
 @media screen and (max-width: 600px) {
   .topnav a:not(:first-child) {display: none;}
@@ -154,8 +156,25 @@ tr:nth-child(even) {background-color: #89addf;}
     padding-left: 5%;
     padding-right: 5%;
   }
+  .go-back-btn {
+    padding: 0.5em;
+    font-size: 0.5em;
+  }
+  .btnBack{
+    text-align: initial;
+    padding-top: 10%
+  }
 }
-
+@media screen and (min-width: 600px) {
+  .go-back-btn {
+    padding: 0.5em;
+    font-size: 0.5em;
+  }
+  .btnBack{
+    text-align: initial;
+    padding-top: 3%
+  }
+}
 /* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
 @media screen and (max-width: 600px) {
   .topnav.responsive {position: relative;}
@@ -172,22 +191,13 @@ tr:nth-child(even) {background-color: #89addf;}
 }
 
 .go-back-btn {
-  position: absolute;
   top: 10%;
   left: 10%;
   padding: 0.5em;
   background-color: #1d3557;
   color: #f0f0f0;
   border: none;
-  border-radius: 2em;
+  border-radius: 1em;
   text-decoration: none;
-  font-size: 2.5em;
-}
-
-@media screen and (max-width: 600px) {
-  .go-back-btn {
-      padding: 1em;
-      font-size: 1.5em;
-  }
-
+  font-size: 1.2em;
 }

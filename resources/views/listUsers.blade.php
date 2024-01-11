@@ -18,7 +18,8 @@
           <a href="{{ route('user.create') }}"><button class="createBtn fa-solid fa-plus"> Crear usuario</button></a>
         </div>
         <br>
-        <div style="overflow: auto;">
+        @if (count($users)>0)
+          <div style="overflow: auto;">
             <table>
               <tr>
                 <th>Username</th>
@@ -34,17 +35,24 @@
                   <td>{{$user->email}}</td>
                   <td>{{$user->user_type}}</td>
                   <td>{{$user->autism_lvl}}</td>
-                  <td><a href="{{ route('user.edit', $user->id) }}"><button class="fa fa-pencil-square iconbuttonEdit"></button></a></td>
+                  <td>
+                    <form method="GET">
+                      <a href="{{ route('user.edit', $user->id) }}"><button class="fa fa-pencil-square iconbuttonEdit"></button></a>
+                    </form>
+                  </td>
                   <td>
                     <form action="{{ route('user.destroy', $user->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this user?');">
                       @csrf
                       @method('DELETE')
-                      <button type="submit" class="fa fa-trash iconbutton iconbuttonDelete"></button>
+                      <a><button type="submit" class="fa fa-trash iconbutton iconbuttonDelete"></button></a>
                     </form>
                   </td>                  
                 </tr>                  
               @endforeach                  
             </table>
-          </div>
+          </div>            
+        @else
+          <h5>Lista de usuarios vacia</h5>   
+        @endif
     </div>  
 </body>
