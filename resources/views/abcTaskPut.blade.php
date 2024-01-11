@@ -15,8 +15,9 @@
     <div class="TargetAbc2">
         <h2>Modificar Tarea</h2>
         <div>
-            <form action="/registrar-task" method="POST">
+            <form action="/modificar-task" method="POST" enctype="multipart/form-data">
                 @csrf
+                <input value="{{$Task['id']}}" name="id" type="hidden">
                 <input value="{{$Task['title']}}" type="text" name="title" placeholder="Titulo"><br>
                 <input value="{{$Task['description']}}" type="text" name="description" placeholder="Descripcion"><br>
                 <label for="autism_lvl">Nivel de autismo:</label><br>
@@ -30,7 +31,7 @@
                 </label>
                 <br><br>
                 <div id="pathImg2">{{$Task['pathImg']}}</div>
-                <input value="{{$Task['pathImg']}}" id="pathImg" name="pathImg" type="file" style="display: none;" multiple/>       
+                <input id="pathImg" name="pathImg" type="file" style="display: none;" multiple/>       
                 <button class="success">Modificar</button>
             </form>
             <a href=/tareas><button class="return">Volver</button></a>
