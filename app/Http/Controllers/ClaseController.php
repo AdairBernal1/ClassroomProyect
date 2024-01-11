@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Clase;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ClaseController extends Controller
 {
@@ -13,10 +14,15 @@ class ClaseController extends Controller
      */
     public function index()
     {
-        $clases = Clase::all();
+        if (Auth::check() && Auth::user()->user_type == 'Admin') {
+            $clases = Clase::all(); // Obtener todas las clases para el administrador
+        } else {
+            $clases = Auth::user()->clases; // Obtener solo las clases del usuario actual
+        }
 
         return view('listClases', compact('clases'));
     }
+
 
     /**
      * Show the form for creating a new resource.

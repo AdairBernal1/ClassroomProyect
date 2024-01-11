@@ -121,6 +121,7 @@ class UserController extends Controller
         if (!auth()->attempt(['username' => $incomingField['logusername'], 'password'=> $incomingField['logpassword']])) {
             return back()->withErrors([
                 'logusername' => 'The provided credentials do not match our records.',
+                'logpassword' => 'Incorrect Password'
             ]);
         }
     
