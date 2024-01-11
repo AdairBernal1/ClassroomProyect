@@ -40,18 +40,21 @@ Route::get('/tareas', function () {
 });
 
 Route::get('/crear-tarea', function () {
-    if (auth() -> check()) {
-        return view('abcTask');
-    }else {
-        return redirect ('/');
+    if (auth()->check()) {
+        $clases = \App\Models\Clase::all();
+        return view('abcTask', ['clases' => $clases]);
+    } else {
+        return redirect('/');
     }
 });
 
+
 Route::get('/modificar-task/{id}', function ($id){
-    if (auth() -> check()) {
+    if (auth()->check()) {
         $task = Task::find($id);
-        return view('abcTaskPut', ['Task'=> $task]);
-    }else{
+        $clases = $task->clases;
+        return view('abcTaskPut', ['Task'=> $task, 'clases' => $clases]);
+    } else {
         return redirect ('/');
     }
 });
@@ -64,7 +67,7 @@ Route::get('/eliminar-task/{id}',[TaskController::class,'deleteTask']);
 
 //UserController routes
 Route::resource('user', UserController::class);
-Route::post('/user/storeStudents', [UserController::class, 'storeAdmin'])->name('user.storeAdmin');
+Route::post('/user/storeAdmin', [UserController::class, 'storeAdmin'])->name('user.storeAdmin');
 Route::post('/iniciar-sesion',[UserController::class,'login']);
 Route::get('/cerrar-sesion',[UserController::class,'logout']);
 

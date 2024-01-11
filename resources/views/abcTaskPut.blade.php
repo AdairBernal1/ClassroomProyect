@@ -29,15 +29,20 @@
                     <option value="2" {{ $Task['autism_lvl'] == 2 ? 'selected' : '' }}>Nivel 2</option>
                 </select>
                 <br><br>
+                <label>Clases:</label><br>
+                @foreach($clases as $clase)
+                    <input type="checkbox" name="clases[]" value="{{ $clase->id }}" {{ $Task->clases->contains($clase->id) ? 'checked' : '' }}> {{ $clase->nombre }}<br>
+                @endforeach
+                <br>
                 <img class="responsive-image" src="{{ asset('public/src/images/' . $Task['pathImg']) }}"><br><br><br>
                 <label for="pathImg" class="custom-file-upload">
                     Subir imagenes
                 </label>
                 <br><br>
                 <div id="pathImg2">{{$Task['pathImg']}}</div>
-                <input id="pathImg" name="pathImg" type="file" style="display: none;" multiple/>       
+                <input id="pathImg" name="pathImg" type="file" style="display: none;" multiple/>
                 <button class="success">Modificar</button>
-            </form>
+            </form>            
         </div> 
     </div>
 </body>

@@ -17,6 +17,6 @@ class Clase extends Model
     }
 
     public function tasks(): BelongsToMany{
-        return $this->belongsToMany(Task::class, 'task_clase');
+        return $this->belongsToMany(Task::class, 'task_clase', 'id_task','id_clase');
     }
 }

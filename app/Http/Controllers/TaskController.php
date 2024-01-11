@@ -35,9 +35,7 @@ class TaskController extends Controller
             $counter = 1;
             $file_path = public_path('public/src/images/' . $filename);
     
-            // Chequea si el archivo ya existe en la carpeta de imágenes
             while(file_exists($file_path)) {
-                // Si el archivo existe, agrega un número al final del nombre del archivo
                 $filename = $original_name . '_' . $counter . '.' . $file_extension;
                 $file_path = public_path('public/src/images/' . $filename);
                 $counter++;
@@ -47,14 +45,18 @@ class TaskController extends Controller
             $incomingField['pathImg'] = $filename;
         }
     
-        Task::create($incomingField);
+        $task = Task::create($incomingField);
+
+        // Attach the selected clases to the task
+        if ($request->has('clases')) {
+            $task->clases()->sync($request->clases);
+        }
     
         return redirect('/tareas');
     }
+
     public function deleteTask(Request $request, $id){
-        // Obtén la tarea actual de la base de datos
         $task = Task::find($id);
-        // Elimina la imagen
         $oldImagePath = public_path('public/src/images/' . $task->pathImg);
         if (file_exists($oldImagePath)) {
             unlink($oldImagePath);
@@ -65,7 +67,7 @@ class TaskController extends Controller
     }
 
     public function modificarTask(Request $request){
-        $id = $request->input('id'); // Obtén el 'id' de la petición
+        $id = $request->input('id');
     
         $incomingField = $request->validate([
             "title" => ["required", "string"],
@@ -73,27 +75,23 @@ class TaskController extends Controller
             "autism_lvl" => ["required"]
         ]);
     
-        // Obtén la tarea actual de la base de datos
         $task = Task::find($id);
-    
+        $task->update($incomingField);
+
         if ($file = $request->file('pathImg')) {
-            // Elimina la imagen antigua
             $oldImagePath = public_path('public/src/images/' . $task->pathImg);
             if (file_exists($oldImagePath)) {
                 unlink($oldImagePath);
             }
     
-            // Almacena la nueva imagen
             $filename = $file->getClientOriginalName();
             $file_path = public_path('public/src/images/' . $filename);
     
-            // Chequea si el archivo ya existe
             $file_extension = $file->getClientOriginalExtension();
             $original_name = basename($filename, '.'.$file_extension);
             $counter = 1;
     
             while(file_exists($file_path)) {
-                // Si el archivo existe, agrega un número al final del nombre del archivo
                 $filename = $original_name . '_' . $counter . '.' . $file_extension;
                 $file_path = public_path('public/src/images/' . $filename);
                 $counter++;
@@ -103,10 +101,13 @@ class TaskController extends Controller
             $incomingField['pathImg'] = $filename;
         }
     
-        // Actualiza la tarea en la base de datos
         $task->update($incomingField);
+
+        // Attach the selected clases to the task
+        if ($request->has('clases')) {
+            $task->clases()->sync($request->clases);
+        }
     
         return redirect('/tareas');
     }
-    
 }
