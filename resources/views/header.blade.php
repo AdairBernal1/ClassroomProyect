@@ -1,7 +1,7 @@
 <body>
   <div class="topnav" id="myTopnav">
     <div>
-      <a href="#home" class="active">Home</a>
+      <a href="/" class="active">Home</a>
       @auth
       <a href="/tareas">Tareas</a>
       <a href="{{ route('clase.index') }}">Clases</a>

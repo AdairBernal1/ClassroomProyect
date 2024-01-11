@@ -1,7 +1,7 @@
 <div class="TargetAbc">
 <h2>Registrarse en Classroom</h2>
 <div>
-    <form action="{{ route('user.store') }}" method="POST">
+    <form action="{{ route('user.storeAdmin') }}" method="POST">
         @csrf
         <input type="text" name="email" placeholder="Correo Electronico"><br>
         <input type="text" name="username" placeholder="Nombre de Usuario"><br>

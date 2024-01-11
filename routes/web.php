@@ -64,6 +64,7 @@ Route::get('/eliminar-task/{id}',[TaskController::class,'deleteTask']);
 
 //UserController routes
 Route::resource('user', UserController::class);
+Route::post('/user/storeStudents', [UserController::class, 'storeAdmin'])->name('user.storeAdmin');
 Route::post('/iniciar-sesion',[UserController::class,'login']);
 Route::get('/cerrar-sesion',[UserController::class,'logout']);
 

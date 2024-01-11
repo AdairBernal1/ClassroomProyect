@@ -45,6 +45,23 @@ class UserController extends Controller
         return redirect()->route('user.index')
                          ->with('success','User created successfully.');
     }
+    public function storeAdmin(Request $request)
+    {
+        $request->validate([
+            'username' => 'required|string',
+            'email' => 'required|email',
+            'password' => 'required|min:8|max:200',
+            'user_type' => 'required',
+            'autism_lvl' => 'nullable',
+        ]);
+
+        $request['password'] = bcrypt($request['password']);
+
+        $user = User::create($request->all());
+
+        return redirect('/dashboard')
+                ->with('success','Usuario Administrador creado.');
+    }
 
     /**
      * Display the specified resource.
