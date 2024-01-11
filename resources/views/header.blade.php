@@ -4,7 +4,7 @@
       <a href="#home" class="active">Home</a>
       @auth
       <a href="/tareas">Tareas</a>
-      <a href="#clases">Clases Asignadas</a>
+      <a href="{{ route('clase.index') }}">Clases</a>
       @csrf<a href="/cerrar-sesion">Cerrar Sesion</a>
       <a href="javascript:void(0);" class="icon" onclick="myFunction()">
         <i class="fa fa-bars"></i>

@@ -12,21 +12,17 @@ class ClaseController extends Controller
      */
     public function index()
     {
-        //
+        $clases = Clase::all();
+
+        return view('listClases', compact('clases'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create(request $request)
+    public function create()
     {
-            $incomingField = $request ->validate([
-            "nombre"=> ["required","string"],
-            "descripcion" => ["required","string"],
-        ]);
-
-        $clase = Clase::create($incomingField);
-        return redirect("tareas");
+        return view('abcClasePut');
     }
 
     /**
@@ -34,7 +30,15 @@ class ClaseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nombre' => 'required|string',
+            'descripcion' => 'required|string',
+        ]);
+
+        $clase = Clase::create($request->all());
+
+        return redirect()->route('clase.index')
+                         ->with('success','Clase created successfully.');
     }
 
     /**
@@ -50,7 +54,7 @@ class ClaseController extends Controller
      */
     public function edit(Clase $clase)
     {
-        //
+        return view('editClase', compact('clase'));
     }
 
     /**
@@ -58,7 +62,14 @@ class ClaseController extends Controller
      */
     public function update(Request $request, Clase $clase)
     {
-        //
+        $request->validate([
+            'nombre' => 'required|string',
+            'descripcion' => 'required|string',
+        ]);
+
+        $clase->update($request->all());
+
+        return redirect()->route('clase.index')->with('success', 'Clase updated successfully');
     }
 
     /**
@@ -66,6 +77,8 @@ class ClaseController extends Controller
      */
     public function destroy(Clase $clase)
     {
-        //
+        $clase->delete();
+
+        return redirect()->route('clase.index')->with('success', 'Clase deleted successfully');
     }
 }
