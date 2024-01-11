@@ -19,7 +19,8 @@
           <a href="{{ route('clase.create') }}"><button class="createBtn fa-solid fa-plus"> Crear clase</button></a>
         </div>
         <br>
-        <div style="overflow: auto;">
+        @if (count($clases)>0)
+          <div style="overflow: auto;">
             <table>
               <tr>
                 <th>Nombre</th>
@@ -44,6 +45,9 @@
                 </tr>                  
               @endforeach                  
             </table>
-          </div>
+        </div>            
+        @else
+            <h5>No hay clases registradas.</h5>
+        @endif
     </div>  
 </body>
