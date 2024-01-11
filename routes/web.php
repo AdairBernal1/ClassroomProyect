@@ -63,7 +63,7 @@ Route::get('/eliminar-task/{id}',[TaskController::class,'deleteTask']);
 
 
 //UserController routes
-Route::post('/registrar-usuario',[UserController::class,'register']);
+Route::resource('user', UserController::class);
 Route::post('/iniciar-sesion',[UserController::class,'login']);
 Route::get('/cerrar-sesion',[UserController::class,'logout']);
 

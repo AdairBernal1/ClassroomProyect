@@ -45,8 +45,6 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'password' => 'hashed',
-        'user_type'=> 'hashed',
     ];
 
     public function tasks(): BelongsToMany{
