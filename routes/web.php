@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ClaseController;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,7 @@ use App\Http\Controllers\ClaseController;
 Route::get('/', function () {
     return view('home');
 });
+
 Route::get('/dashboard', function () {
     if (auth() -> check()) {
         return view('dashboard');

@@ -23,7 +23,7 @@
           <div style="overflow: auto;">
             <table>
               <tr>
-                <th>Titutlo</th>
+                <th>Titulo</th>
                 <th>Descripcion</th>
                 <th>Nivel de dificultad</th>
                 <th>Imagen</th>
