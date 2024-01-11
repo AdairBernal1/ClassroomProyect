@@ -46,9 +46,21 @@ Route::get('/crear-tarea', function () {
         return redirect ('/');
     }
 });
+
+Route::get('/modificar-task/{id}', function ($id){
+    if (auth() -> check()) {
+        $task = Task::find($id);
+        return view('abcTaskPut', ['Task'=> $task]);
+    }else{
+        return redirect ('/');
+    }
+});
+
 //TaskController routes
 Route::post('/registrar-task',[TaskController::class,'createTask']);
+Route::post('/modificar-task',[TaskController::class,'modificarTask']);
 Route::get('/eliminar-task/{id}',[TaskController::class,'deleteTask']);
+
 
 //UserController routes
 Route::post('/registrar-usuario',[UserController::class,'register']);

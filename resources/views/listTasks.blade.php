@@ -38,7 +38,7 @@
                   <td>
                     <img class="responsive-image" src="{{ asset('public/src/images/' . $task['pathImg']) }}" onclick="onClick(this)">
                   </td>
-                  <td><a href=""><button class="fa fa-pencil-square iconbuttonEdit"></button></a></td>
+                  <td><a href="/modificar-task/{{$task['id']}}"><button class="fa fa-pencil-square iconbuttonEdit"></button></a></td>
                   <td><a href="/eliminar-task/{{$task['id']}}"><button class="fa fa-trash iconbutton iconbuttonDelete"></button></a></td>                  
                 </tr>                  
               @endforeach                  
