@@ -201,3 +201,24 @@ tr:nth-child(even) {background-color: #89addf;}
   text-decoration: none;
   font-size: 1.2em;
 }
+
+input[type="checkbox"] {
+    margin: 10px 5px;
+    transform: scale(1.5);
+}
+
+label {
+    display: inline-block;
+    margin: 20px 0;
+}
+.student-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.student-name,
+.student-autism-lvl {
+  margin-right: 10px;
+}

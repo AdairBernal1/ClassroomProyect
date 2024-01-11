@@ -69,3 +69,5 @@ Route::get('/cerrar-sesion',[UserController::class,'logout']);
 
 //ClaseController routes
 Route::resource('clase', ClaseController::class);
+Route::get('/clase/{clase}/addStudents', [ClaseController::class, 'addStudents'])->name('clase.addStudents');
+Route::post('/clase/{clase}/storeStudents', [ClaseController::class, 'storeStudents'])->name('clase.storeStudents');

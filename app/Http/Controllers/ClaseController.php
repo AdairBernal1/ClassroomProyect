@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Clase;
 use Illuminate\Http\Request;
 
@@ -34,11 +35,10 @@ class ClaseController extends Controller
             'nombre' => 'required|string',
             'descripcion' => 'required|string',
         ]);
-
+    
         $clase = Clase::create($request->all());
-
-        return redirect()->route('clase.index')
-                         ->with('success','Clase created successfully.');
+    
+        return redirect()->route('clase.addStudents', $clase->id);
     }
 
     /**
@@ -81,4 +81,16 @@ class ClaseController extends Controller
 
         return redirect()->route('clase.index')->with('success', 'Clase deleted successfully');
     }
+    public function addStudents(Clase $clase)
+    {
+        $students = User::where('user_type', 'Usuario')->get();
+        return view('addStudentsToClass', compact('clase', 'students'));
+    }
+    public function storeStudents(Request $request, Clase $clase)
+    {
+        $clase->users()->sync($request->students);
+        return redirect()->route('clase.index')->with('success', 'Students added successfully');
+    }
+
+
 }

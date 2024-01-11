@@ -13,10 +13,10 @@ class Clase extends Model
     ];
 
     public function users(): BelongsToMany{
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class, 'user_clase', 'id_clase','id_user');
     }
 
     public function tasks(): BelongsToMany{
-        return $this->belongsToMany(Task::class);
+        return $this->belongsToMany(Task::class, 'task_clase');
     }
 }
