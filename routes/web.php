@@ -45,7 +45,9 @@ Route::get('/crear-tarea', function () {
         return redirect ('/');
     }
 });
+//TaskController routes
 Route::post('/registrar-task',[TaskController::class,'createTask']);
+Route::get('/eliminar-task/{id}',[TaskController::class,'deleteTask']);
 
 //UserController routes
 Route::post('/registrar-usuario',[UserController::class,'register']);

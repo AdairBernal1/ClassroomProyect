@@ -38,44 +38,9 @@ class TaskController extends Controller
     
         return redirect('/tareas');
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Task $tasks)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Task $tasks)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Task $tasks)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Task $tasks)
-    {
-        //
+    public function deleteTask(Request $request, $id){
+        Task::where('id', $id)->delete();  
+        
+        return redirect('/tareas');    
     }
 }
