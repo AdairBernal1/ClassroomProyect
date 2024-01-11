@@ -13,19 +13,28 @@
 <body>
     @include('header')
     <br>
-    <div class="TargetAbc2">
-        <div class="btnBack">
-            <a href="{{ url()->previous() }}" class="go-back-btn">←</a>
-        </div>
-        <h2>Editar Clase</h2>
-        <div>
-            <form action="{{ route('clase.update', $clase->id) }}" method="POST">
-                @csrf
-                @method('PUT')
-                <input type="text" name="nombre" value="{{ $clase->nombre }}" placeholder="Nombre"><br>
-                <input type="text" name="descripcion" value="{{ $clase->descripcion }}" placeholder="Descripcion"><br>
-                <button class="success">Actualizar</button>
-            </form>
-        </div> 
-    </div>  
+    @if (Auth::user()->user_type == 'Admin')
+        <div class="TargetAbc2">
+            <div class="btnBack">
+                <a href="{{ url()->previous() }}" class="go-back-btn">←</a>
+            </div>
+            <h2>Editar Clase</h2>
+            <div>
+                <form action="{{ route('clase.update', $clase->id) }}" method="POST">
+                    @csrf
+                    @method('PUT')
+                    <input type="text" name="nombre" value="{{ $clase->nombre }}" placeholder="Nombre"><br>
+                    <input type="text" name="descripcion" value="{{ $clase->descripcion }}" placeholder="Descripcion"><br>
+                    <button class="success">Actualizar</button>
+                </form>
+            </div> 
+        </div>          
+    @else
+        <script type="text/javascript">
+            function redirect() {
+                window.location = "";
+            }
+            window.onload = redirect;
+        </script>    
+    @endif    
 </body>

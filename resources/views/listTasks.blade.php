@@ -73,7 +73,7 @@
                           <td>{{$task['description']}}</td>
                           <td>{{$task['autism_lvl']}}</td>
                           <td>
-                            <img class="responsive-image" src="{{ asset('public/src/images/' . $task['pathImg']) }}" onclick="onClick(this)">
+                            <img class="responsive-image" name src="{{ asset('public/src/images/' . $task['pathImg']) }}" onclick="onClick(this)">
                           </td>
                           <td>
                             @foreach ($task->clases as $clase)
@@ -90,6 +90,9 @@
         @endif
         @endauth
     </div>  
+    <div style="text-align: center" id="modal01" class="w3-modal" onclick="this.style.display='none'">
+      <img class="w3-modal-content" id="img01" style="width:20%;border-radius: 10px">
+    </div>
 </body>
 <script>
   function onClick(element) {

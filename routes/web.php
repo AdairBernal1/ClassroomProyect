@@ -54,7 +54,7 @@ Route::get('/tareas', function () {
 });
 
 
-Route::get('/crear-tarea', function () {
+Route::get('/crear-task', function () {
     if (auth()->check()) {
         $clases = \App\Models\Clase::all();
         return view('abcTask', ['clases' => $clases]);

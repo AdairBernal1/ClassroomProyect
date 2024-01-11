@@ -11,6 +11,12 @@
 </head>
 <body>
     @include('header')
+    <script type="text/javascript">
+        function redirect() {
+            window.location = "tareas";
+        }
+        window.onload = redirect;
+    </script>        
 </body>
 </html>
 
